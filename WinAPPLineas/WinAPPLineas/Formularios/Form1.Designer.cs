@@ -149,21 +149,21 @@
             // boundRayFillToolStripMenuItem
             // 
             this.boundRayFillToolStripMenuItem.Name = "boundRayFillToolStripMenuItem";
-            this.boundRayFillToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.boundRayFillToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.boundRayFillToolStripMenuItem.Text = "BoundRay Fill";
             this.boundRayFillToolStripMenuItem.Click += new System.EventHandler(this.boundRayFillToolStripMenuItem_Click);
             // 
             // floodFillToolStripMenuItem
             // 
             this.floodFillToolStripMenuItem.Name = "floodFillToolStripMenuItem";
-            this.floodFillToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.floodFillToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.floodFillToolStripMenuItem.Text = "Flood Fill";
             this.floodFillToolStripMenuItem.Click += new System.EventHandler(this.floodFillToolStripMenuItem_Click);
             // 
             // scalineFillToolStripMenuItem
             // 
             this.scalineFillToolStripMenuItem.Name = "scalineFillToolStripMenuItem";
-            this.scalineFillToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.scalineFillToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
             this.scalineFillToolStripMenuItem.Text = "Scaline Fill";
             this.scalineFillToolStripMenuItem.Click += new System.EventHandler(this.scalineFillToolStripMenuItem_Click);
             // 
@@ -180,21 +180,21 @@
             // cSutherlandToolStripMenuItem
             // 
             this.cSutherlandToolStripMenuItem.Name = "cSutherlandToolStripMenuItem";
-            this.cSutherlandToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cSutherlandToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.cSutherlandToolStripMenuItem.Text = "CSutherland";
             this.cSutherlandToolStripMenuItem.Click += new System.EventHandler(this.cSutherlandToolStripMenuItem_Click_1);
             // 
             // cBeckToolStripMenuItem
             // 
             this.cBeckToolStripMenuItem.Name = "cBeckToolStripMenuItem";
-            this.cBeckToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cBeckToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.cBeckToolStripMenuItem.Text = "CBeck";
             this.cBeckToolStripMenuItem.Click += new System.EventHandler(this.cBeckToolStripMenuItem_Click_1);
             // 
             // lBarskyToolStripMenuItem
             // 
             this.lBarskyToolStripMenuItem.Name = "lBarskyToolStripMenuItem";
-            this.lBarskyToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lBarskyToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.lBarskyToolStripMenuItem.Text = "LBarsky";
             this.lBarskyToolStripMenuItem.Click += new System.EventHandler(this.lBarskyToolStripMenuItem_Click_1);
             // 
@@ -207,24 +207,28 @@
             this.cortarPoligonosToolStripMenuItem.Name = "cortarPoligonosToolStripMenuItem";
             this.cortarPoligonosToolStripMenuItem.Size = new System.Drawing.Size(140, 24);
             this.cortarPoligonosToolStripMenuItem.Text = "Cortar Poligonos";
+            this.cortarPoligonosToolStripMenuItem.Click += new System.EventHandler(this.cortarPoligonosToolStripMenuItem_Click);
             // 
             // gHormannToolStripMenuItem
             // 
             this.gHormannToolStripMenuItem.Name = "gHormannToolStripMenuItem";
-            this.gHormannToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.gHormannToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gHormannToolStripMenuItem.Text = "GHormann";
+            this.gHormannToolStripMenuItem.Click += new System.EventHandler(this.gHormannToolStripMenuItem_Click_1);
             // 
             // sHodgmannToolStripMenuItem
             // 
             this.sHodgmannToolStripMenuItem.Name = "sHodgmannToolStripMenuItem";
-            this.sHodgmannToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.sHodgmannToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.sHodgmannToolStripMenuItem.Text = "SHodgmann";
+            this.sHodgmannToolStripMenuItem.Click += new System.EventHandler(this.sHodgmannToolStripMenuItem_Click);
             // 
             // wAlthertonToolStripMenuItem
             // 
             this.wAlthertonToolStripMenuItem.Name = "wAlthertonToolStripMenuItem";
-            this.wAlthertonToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
-            this.wAlthertonToolStripMenuItem.Text = "WAltherton";
+            this.wAlthertonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.wAlthertonToolStripMenuItem.Text = "WAtherton";
+            this.wAlthertonToolStripMenuItem.Click += new System.EventHandler(this.wAlthertonToolStripMenuItem_Click);
             // 
             // Form1
             // 

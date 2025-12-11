@@ -142,5 +142,28 @@ namespace WinAPPLineas
             LiangBarskyForm child = new LiangBarskyForm { MdiParent = this };
             child.Show();
         }
+
+        private void cortarPoligonosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gHormannToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            GreinerHormannForm child = new GreinerHormannForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void sHodgmannToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SutherlandHodgmanForm child = new SutherlandHodgmanForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void wAlthertonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WeilerAthertonForm child = new WeilerAthertonForm { MdiParent = this };
+            child.Show();
+        }
     }
 }

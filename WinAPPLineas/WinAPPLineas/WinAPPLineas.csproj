@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\CRecortarlineas.cs" />
+    <Compile Include="Clases\CRecortarPoligono.cs" />
     <Compile Include="Clases\CRelleno.cs" />
     <Compile Include="Formularios\CFill.cs">
       <SubType>Form</SubType>
@@ -110,6 +111,12 @@
     <Compile Include="Formularios\BoundaryFillForm.Designer.cs">
       <DependentUpon>BoundaryFillForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\GreinerHormannForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\GreinerHormannForm.Designer.cs">
+      <DependentUpon>GreinerHormannForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\LiangBarskyForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +135,18 @@
     </Compile>
     <Compile Include="Formularios\ScalineFillForm.Designer.cs">
       <DependentUpon>ScalineFillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\SutherlandHodgmanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SutherlandHodgmanForm.Designer.cs">
+      <DependentUpon>SutherlandHodgmanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\WeilerAthertonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\WeilerAthertonForm.Designer.cs">
+      <DependentUpon>WeilerAthertonForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Formularios\XWLA.cs">
@@ -166,6 +185,9 @@
     <EmbeddedResource Include="Formularios\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\GreinerHormannForm.resx">
+      <DependentUpon>GreinerHormannForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\LiangBarskyForm.resx">
       <DependentUpon>LiangBarskyForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +197,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ScalineFillForm.resx">
       <DependentUpon>ScalineFillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SutherlandHodgmanForm.resx">
+      <DependentUpon>SutherlandHodgmanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\WeilerAthertonForm.resx">
+      <DependentUpon>WeilerAthertonForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
