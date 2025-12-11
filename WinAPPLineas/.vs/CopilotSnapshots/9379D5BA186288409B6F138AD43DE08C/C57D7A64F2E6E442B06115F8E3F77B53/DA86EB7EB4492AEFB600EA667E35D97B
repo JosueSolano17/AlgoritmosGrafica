@@ -1,0 +1,219 @@
+﻿namespace WinAPPLineas
+{
+    partial class DDA
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.grbProcess = new System.Windows.Forms.GroupBox();
+            this.btnDibujar = new System.Windows.Forms.Button();
+            this.grbInputs = new System.Windows.Forms.GroupBox();
+            this.txt_Yf = new System.Windows.Forms.TextBox();
+            this.txt_Yi = new System.Windows.Forms.TextBox();
+            this.txt_Xf = new System.Windows.Forms.TextBox();
+            this.lbl_Yi = new System.Windows.Forms.Label();
+            this.lbl_Yf = new System.Windows.Forms.Label();
+            this.lbl_Xf = new System.Windows.Forms.Label();
+            this.txt_Xi = new System.Windows.Forms.TextBox();
+            this.lblXi = new System.Windows.Forms.Label();
+            this.grbCanvas = new System.Windows.Forms.GroupBox();
+            this.picCanvas = new System.Windows.Forms.PictureBox();
+            this.grbProcess.SuspendLayout();
+            this.grbInputs.SuspendLayout();
+            this.grbCanvas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // grbProcess
+            // 
+            this.grbProcess.Controls.Add(this.btnDibujar);
+            this.grbProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbProcess.Location = new System.Drawing.Point(2, 204);
+            this.grbProcess.Name = "grbProcess";
+            this.grbProcess.Size = new System.Drawing.Size(274, 63);
+            this.grbProcess.TabIndex = 17;
+            this.grbProcess.TabStop = false;
+            this.grbProcess.Text = "Procesos";
+            // 
+            // btnDibujar
+            // 
+            this.btnDibujar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDibujar.ForeColor = System.Drawing.Color.Maroon;
+            this.btnDibujar.Location = new System.Drawing.Point(93, 34);
+            this.btnDibujar.Name = "btnDibujar";
+            this.btnDibujar.Size = new System.Drawing.Size(75, 23);
+            this.btnDibujar.TabIndex = 0;
+            this.btnDibujar.Text = "Dibujar";
+            this.btnDibujar.UseVisualStyleBackColor = true;
+            this.btnDibujar.Click += new System.EventHandler(this.btnDibujar_Click);
+            // 
+            // grbInputs
+            // 
+            this.grbInputs.Controls.Add(this.txt_Yf);
+            this.grbInputs.Controls.Add(this.txt_Yi);
+            this.grbInputs.Controls.Add(this.txt_Xf);
+            this.grbInputs.Controls.Add(this.lbl_Yi);
+            this.grbInputs.Controls.Add(this.lbl_Yf);
+            this.grbInputs.Controls.Add(this.lbl_Xf);
+            this.grbInputs.Controls.Add(this.txt_Xi);
+            this.grbInputs.Controls.Add(this.lblXi);
+            this.grbInputs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbInputs.Location = new System.Drawing.Point(2, 12);
+            this.grbInputs.Name = "grbInputs";
+            this.grbInputs.Size = new System.Drawing.Size(275, 172);
+            this.grbInputs.TabIndex = 16;
+            this.grbInputs.TabStop = false;
+            this.grbInputs.Text = "Entradas";
+            // 
+            // txt_Yf
+            // 
+            this.txt_Yf.Location = new System.Drawing.Point(112, 122);
+            this.txt_Yf.Name = "txt_Yf";
+            this.txt_Yf.Size = new System.Drawing.Size(138, 20);
+            this.txt_Yf.TabIndex = 8;
+            // 
+            // txt_Yi
+            // 
+            this.txt_Yi.Location = new System.Drawing.Point(112, 95);
+            this.txt_Yi.Name = "txt_Yi";
+            this.txt_Yi.Size = new System.Drawing.Size(138, 20);
+            this.txt_Yi.TabIndex = 7;
+            // 
+            // txt_Xf
+            // 
+            this.txt_Xf.Location = new System.Drawing.Point(112, 63);
+            this.txt_Xf.Name = "txt_Xf";
+            this.txt_Xf.Size = new System.Drawing.Size(138, 20);
+            this.txt_Xf.TabIndex = 6;
+            // 
+            // lbl_Yi
+            // 
+            this.lbl_Yi.AutoSize = true;
+            this.lbl_Yi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Yi.ForeColor = System.Drawing.Color.SeaShell;
+            this.lbl_Yi.Location = new System.Drawing.Point(6, 95);
+            this.lbl_Yi.Name = "lbl_Yi";
+            this.lbl_Yi.Size = new System.Drawing.Size(91, 13);
+            this.lbl_Yi.TabIndex = 5;
+            this.lbl_Yi.Text = "Ingrese \"Y\" inicial";
+            // 
+            // lbl_Yf
+            // 
+            this.lbl_Yf.AutoSize = true;
+            this.lbl_Yf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Yf.ForeColor = System.Drawing.Color.SeaShell;
+            this.lbl_Yf.Location = new System.Drawing.Point(6, 122);
+            this.lbl_Yf.Name = "lbl_Yf";
+            this.lbl_Yf.Size = new System.Drawing.Size(84, 13);
+            this.lbl_Yf.TabIndex = 4;
+            this.lbl_Yf.Text = "Ingrese \"Y\" final";
+            // 
+            // lbl_Xf
+            // 
+            this.lbl_Xf.AutoSize = true;
+            this.lbl_Xf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Xf.ForeColor = System.Drawing.Color.SeaShell;
+            this.lbl_Xf.Location = new System.Drawing.Point(8, 66);
+            this.lbl_Xf.Name = "lbl_Xf";
+            this.lbl_Xf.Size = new System.Drawing.Size(84, 13);
+            this.lbl_Xf.TabIndex = 3;
+            this.lbl_Xf.Text = "Ingrese \"X\" final";
+            // 
+            // txt_Xi
+            // 
+            this.txt_Xi.Location = new System.Drawing.Point(112, 34);
+            this.txt_Xi.Name = "txt_Xi";
+            this.txt_Xi.Size = new System.Drawing.Size(138, 20);
+            this.txt_Xi.TabIndex = 2;
+            // 
+            // lblXi
+            // 
+            this.lblXi.AutoSize = true;
+            this.lblXi.BackColor = System.Drawing.Color.Salmon;
+            this.lblXi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblXi.ForeColor = System.Drawing.Color.SeaShell;
+            this.lblXi.Location = new System.Drawing.Point(6, 37);
+            this.lblXi.Name = "lblXi";
+            this.lblXi.Size = new System.Drawing.Size(91, 13);
+            this.lblXi.TabIndex = 0;
+            this.lblXi.Text = "Ingrese \"X\" inicial";
+            // 
+            // grbCanvas
+            // 
+            this.grbCanvas.Controls.Add(this.picCanvas);
+            this.grbCanvas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbCanvas.Location = new System.Drawing.Point(282, 3);
+            this.grbCanvas.Name = "grbCanvas";
+            this.grbCanvas.Size = new System.Drawing.Size(607, 468);
+            this.grbCanvas.TabIndex = 15;
+            this.grbCanvas.TabStop = false;
+            this.grbCanvas.Text = "Gráfico";
+            // 
+            // picCanvas
+            // 
+            this.picCanvas.Location = new System.Drawing.Point(6, 19);
+            this.picCanvas.Name = "picCanvas";
+            this.picCanvas.Size = new System.Drawing.Size(582, 443);
+            this.picCanvas.TabIndex = 0;
+            this.picCanvas.TabStop = false;
+            // 
+            // DDA
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Salmon;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.grbProcess);
+            this.Controls.Add(this.grbInputs);
+            this.Controls.Add(this.grbCanvas);
+            this.Name = "DDA";
+            this.Text = "DDA";
+            this.grbProcess.ResumeLayout(false);
+            this.grbInputs.ResumeLayout(false);
+            this.grbInputs.PerformLayout();
+            this.grbCanvas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox grbProcess;
+        private System.Windows.Forms.Button btnDibujar;
+        private System.Windows.Forms.GroupBox grbInputs;
+        private System.Windows.Forms.TextBox txt_Yf;
+        private System.Windows.Forms.TextBox txt_Yi;
+        private System.Windows.Forms.TextBox txt_Xf;
+        private System.Windows.Forms.Label lbl_Yi;
+        private System.Windows.Forms.Label lbl_Yf;
+        private System.Windows.Forms.Label lbl_Xf;
+        private System.Windows.Forms.TextBox txt_Xi;
+        private System.Windows.Forms.Label lblXi;
+        private System.Windows.Forms.GroupBox grbCanvas;
+        private System.Windows.Forms.PictureBox picCanvas;
+    }
+}

@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    internal static class CFill
+    {
+        // Flood Fill (BFS) - Relleno por propagación usando cola
+        // Descripción: parte de una semilla y rellena regiones contiguas que cumplen un criterio de color.
+        // Ventajas: simple y robusto. Desventajas: puede ser costoso en memoria para áreas grandes.
+        public static void FloodFillBfs(Bitmap bmp, Point seed, Color target, Color replacement)
+        {
+            if (bmp == null) return;
+            if (seed.X < 0 || seed.X >= bmp.Width || seed.Y < 0 || seed.Y >= bmp.Height) return;
+            if (replacement.ToArgb() == target.ToArgb()) return;
+
+            Color original = bmp.GetPixel(seed.X, seed.Y);
+            if (original.ToArgb() != target.ToArgb()) return;
+
+            Queue<Point> q = new Queue<Point>();
+            q.Enqueue(seed);
+            while (q.Count > 0)
+            {
+                var p = q.Dequeue();
+                if (p.X < 0 || p.X >= bmp.Width || p.Y < 0 || p.Y >= bmp.Height) continue;
+                if (bmp.GetPixel(p.X, p.Y).ToArgb() != target.ToArgb()) continue;
+                bmp.SetPixel(p.X, p.Y, replacement);
+                q.Enqueue(new Point(p.X + 1, p.Y));
+                q.Enqueue(new Point(p.X - 1, p.Y));
+                q.Enqueue(new Point(p.X, p.Y + 1));
+                q.Enqueue(new Point(p.X, p.Y - 1));
+            }
+        }
+
+        // Boundary Fill (DFS) - Relleno por frontera (4 vecinos)
+        // Descripción: rellena hasta que encuentra un color frontera.
+        public static void BoundaryFill(Bitmap bmp, Point p, Color fillColor, Color boundaryColor)
+        {
+            if (bmp == null) return;
+            if (p.X < 0 || p.X >= bmp.Width || p.Y < 0 || p.Y >= bmp.Height) return;
+            Color current = bmp.GetPixel(p.X, p.Y);
+            if (current.ToArgb() == boundaryColor.ToArgb() || current.ToArgb() == fillColor.ToArgb()) return;
+            bmp.SetPixel(p.X, p.Y, fillColor);
+            BoundaryFill(bmp, new Point(p.X + 1, p.Y), fillColor, boundaryColor);
+            BoundaryFill(bmp, new Point(p.X - 1, p.Y), fillColor, boundaryColor);
+            BoundaryFill(bmp, new Point(p.X, p.Y + 1), fillColor, boundaryColor);
+            BoundaryFill(bmp, new Point(p.X, p.Y - 1), fillColor, boundaryColor);
+        }
+
+        // Scanline Polygon Fill - Relleno por líneas de escaneo para polígonos simples
+        // Descripción: calcula intersecciones por fila y pinta segmentos entre pares.
+        public static void ScanlineFill(Bitmap bmp, IList<Point> polygon, Color color)
+        {
+            if (bmp == null || polygon == null || polygon.Count < 3) return;
+            Rectangle bounds = GetBounds(polygon);
+            for (int y = Math.Max(bounds.Top, 0); y <= Math.Min(bounds.Bottom, bmp.Height - 1); y++)
+            {
+                List<int> xs = new List<int>();
+                for (int i = 0; i < polygon.Count; i++)
+                {
+                    Point p1 = polygon[i];
+                    Point p2 = polygon[(i + 1) % polygon.Count];
+                    if ((p1.Y <= y && p2.Y > y) || (p2.Y <= y && p1.Y > y))
+                    {
+                        // Evitar división por cero
+                        float x = p1.X + (float)(y - p1.Y) * (p2.X - p1.X) / (float)(p2.Y - p1.Y);
+                        xs.Add((int)Math.Round(x));
+                    }
+                }
+                xs.Sort();
+                for (int k = 0; k + 1 < xs.Count; k += 2)
+                {
+                    int x1 = Math.Max(xs[k], 0);
+                    int x2 = Math.Min(xs[k + 1], bmp.Width - 1);
+                    for (int x = x1; x <= x2; x++) bmp.SetPixel(x, y, color);
+                }
+            }
+        }
+
+        private static Rectangle GetBounds(IList<Point> pts)
+        {
+            int minX = int.MaxValue, minY = int.MaxValue, maxX = int.MinValue, maxY = int.MinValue;
+            foreach (var p in pts)
+            {
+                minX = Math.Min(minX, p.X);
+                minY = Math.Min(minY, p.Y);
+                maxX = Math.Max(maxX, p.X);
+                maxY = Math.Max(maxY, p.Y);
+            }
+            return Rectangle.FromLTRB(minX, minY, maxX, maxY);
+        }
+    }
+}

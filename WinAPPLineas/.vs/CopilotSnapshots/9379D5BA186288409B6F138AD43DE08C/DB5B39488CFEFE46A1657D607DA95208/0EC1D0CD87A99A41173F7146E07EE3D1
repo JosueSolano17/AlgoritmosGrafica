@@ -1,0 +1,197 @@
+﻿namespace WinAPPLineas
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.lineasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ddaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.midpointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xiaolinWuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.circulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.midPointCircleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.circleBrenshmanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.círcleParamétricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.algoritmosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.demosRellenoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.demosRecorteLineasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.demosRecortePoligonosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lineasToolStripMenuItem,
+            this.circulosToolStripMenuItem,
+            this.algoritmosToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(811, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // custom design
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(30,30,30);
+            this.menuStrip1.ForeColor = System.Drawing.Color.White;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lineasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.circulosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            // 
+            // lineasToolStripMenuItem
+            // 
+            this.lineasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ddaToolStripMenuItem,
+            this.midpointToolStripMenuItem,
+            this.xiaolinWuToolStripMenuItem});
+            this.lineasToolStripMenuItem.Name = "lineasToolStripMenuItem";
+            this.lineasToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.lineasToolStripMenuItem.Text = "Líneas";
+            // 
+            // ddaToolStripMenuItem
+            // 
+            this.ddaToolStripMenuItem.Name = "ddaToolStripMenuItem";
+            this.ddaToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.ddaToolStripMenuItem.Text = "dda";
+            this.ddaToolStripMenuItem.Click += new System.EventHandler(this.ddaToolStripMenuItem_Click);
+            // 
+            // midpointToolStripMenuItem
+            // 
+            this.midpointToolStripMenuItem.Name = "midpointToolStripMenuItem";
+            this.midpointToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.midpointToolStripMenuItem.Text = "midpoint";
+            this.midpointToolStripMenuItem.Click += new System.EventHandler(this.midpointToolStripMenuItem_Click);
+            // 
+            // xiaolinWuToolStripMenuItem
+            // 
+            this.xiaolinWuToolStripMenuItem.Name = "xiaolinWuToolStripMenuItem";
+            this.xiaolinWuToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.xiaolinWuToolStripMenuItem.Text = "xiaolin wu";
+            this.xiaolinWuToolStripMenuItem.Click += new System.EventHandler(this.xiaolinWuToolStripMenuItem_Click);
+            // 
+            // circulosToolStripMenuItem
+            // 
+            this.circulosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.midPointCircleToolStripMenuItem,
+            this.circleBrenshmanToolStripMenuItem,
+            this.círcleParamétricoToolStripMenuItem});
+            this.circulosToolStripMenuItem.Name = "circulosToolStripMenuItem";
+            this.circulosToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.circulosToolStripMenuItem.Text = "Circulos";
+            // 
+            // midPointCircleToolStripMenuItem
+            // 
+            this.midPointCircleToolStripMenuItem.Name = "midPointCircleToolStripMenuItem";
+            this.midPointCircleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.midPointCircleToolStripMenuItem.Text = "MidPointCircle";
+            this.midPointCircleToolStripMenuItem.Click += new System.EventHandler(this.midPointCircleToolStripMenuItem_Click);
+            // 
+            // circleBrenshmanToolStripMenuItem
+            // 
+            this.circleBrenshmanToolStripMenuItem.Name = "circleBrenshmanToolStripMenuItem";
+            this.circleBrenshmanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.circleBrenshmanToolStripMenuItem.Text = "CircleBrenshman";
+            this.circleBrenshmanToolStripMenuItem.Click += new System.EventHandler(this.circleBrenshmanToolStripMenuItem_Click);
+            // 
+            // círcleParamétricoToolStripMenuItem
+            // 
+            this.círcleParamétricoToolStripMenuItem.Name = "círcleParamétricoToolStripMenuItem";
+            this.círcleParamétricoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.círcleParamétricoToolStripMenuItem.Text = "CírcleParamétrico";
+            this.círcleParamétricoToolStripMenuItem.Click += new System.EventHandler(this.círcleParamétricoToolStripMenuItem_Click);
+            // 
+            // algoritmosToolStripMenuItem
+            // 
+            this.algoritmosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.demosRellenoToolStripMenuItem,
+            this.demosRecorteLineasToolStripMenuItem,
+            this.demosRecortePoligonosToolStripMenuItem});
+            this.algoritmosToolStripMenuItem.Name = "algoritmosToolStripMenuItem";
+            this.algoritmosToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.algoritmosToolStripMenuItem.Text = "Algoritmos";
+            // 
+            // demosRellenoToolStripMenuItem
+            // 
+            this.demosRellenoToolStripMenuItem.Name = "demosRellenoToolStripMenuItem";
+            this.demosRellenoToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.demosRellenoToolStripMenuItem.Text = "Demos de Relleno";
+            this.demosRellenoToolStripMenuItem.Click += new System.EventHandler(this.OpenRellenoDemo);
+            // 
+            // demosRecorteLineasToolStripMenuItem
+            // 
+            this.demosRecorteLineasToolStripMenuItem.Name = "demosRecorteLineasToolStripMenuItem";
+            this.demosRecorteLineasToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.demosRecorteLineasToolStripMenuItem.Text = "Demos Recorte Líneas";
+            this.demosRecorteLineasToolStripMenuItem.Click += new System.EventHandler(this.OpenClipLineDemo);
+            // 
+            // demosRecortePoligonosToolStripMenuItem
+            // 
+            this.demosRecortePoligonosToolStripMenuItem.Name = "demosRecortePoligonosToolStripMenuItem";
+            this.demosRecortePoligonosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.demosRecortePoligonosToolStripMenuItem.Text = "Demos Recorte Polígonos";
+            this.demosRecortePoligonosToolStripMenuItem.Click += new System.EventHandler(this.OpenClipPolyDemo);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(811, 329);
+            this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Form1";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            // custom design
+            this.BackColor = System.Drawing.Color.FromArgb(245, 246, 252);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Algoritmos de Líneas y Círculos";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem lineasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem circulosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ddaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem midpointToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xiaolinWuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem midPointCircleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem circleBrenshmanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem círcleParamétricoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem algoritmosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem demosRellenoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem demosRecorteLineasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem demosRecortePoligonosToolStripMenuItem;
+    }
+}
+

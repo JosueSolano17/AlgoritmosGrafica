@@ -1,0 +1,114 @@
+Lineas\Form1.cs
+using System;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            IsMdiContainer = true; // imprescindible para ver los hijos MDI
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
+
+        // Líneas (ya existentes)
+        private void ddaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new DDA { MdiParent = this };
+            child.Show();
+        }
+
+        private void midpointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new MLA { MdiParent = this };
+            child.Show();
+        }
+
+        private void xiaolinWuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new XWLA { MdiParent = this };
+            child.Show();
+        }
+
+        // Círculos (ya existentes)
+        private void midPointCircleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new Circulo { MdiParent = this };
+            child.Show();
+        }
+
+        private void circleBrenshmanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new CBA { MdiParent = this };
+            child.Show();
+        }
+
+        private void círcleParamétricoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new CPE { MdiParent = this };
+            child.Show();
+        }
+
+        // Relleno: abrir cada variante en su propio formulario
+        private void floodFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new FillFloodForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void boundaryFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new FillBoundaryForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void scanlineFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new FillScanlineForm { MdiParent = this };
+            child.Show();
+        }
+
+        // Cortar Líneas: abrir cada variante
+        private void cSutherlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new LineCohenSutherlandForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void cBeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new LineCyrusBeckForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void lBarskyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new LineLiangBarskyForm { MdiParent = this };
+            child.Show();
+        }
+
+        // Cortar Polígonos: abrir cada variante
+        private void sHodgmanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new PolySutherlandHodgmanForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void wAthertonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new PolyWeilerAthertonForm { MdiParent = this };
+            child.Show();
+        }
+
+        private void gHormannToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var child = new PolyGreinerHormannForm { MdiParent = this };
+            child.Show();
+        }
+    }
+}

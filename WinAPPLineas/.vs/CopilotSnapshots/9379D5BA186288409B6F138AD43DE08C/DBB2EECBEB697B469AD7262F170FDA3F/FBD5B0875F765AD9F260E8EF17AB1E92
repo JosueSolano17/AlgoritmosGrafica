@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    public class DemoClipPolyForm : Form
+    {
+        private PictureBox pic;
+        private ComboBox cbo;
+        private Button btnRun;
+        private Label lblDesc;
+        private Rectangle viewport = new Rectangle(50, 50, 400, 300);
+        private List<Point> subject = new List<Point> { new Point(20, 40), new Point(200, 20), new Point(500, 200), new Point(100, 400) };
+        private ClipPolyVariant variant;
+
+        public DemoClipPolyForm(Form1.ClipPolyVariant v)
+        {
+            this.variant = (ClipPolyVariant)v;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            this.Text = "Demo Recorte de Polígonos";
+            this.Size = new Size(900, 600);
+            pic = new PictureBox { Dock = DockStyle.Right, Width = 600, BackColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
+            cbo = new ComboBox { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbo.Items.AddRange(new object[] { ClipPolyVariant.SutherlandHodgman, ClipPolyVariant.WeilerAtherton, ClipPolyVariant.ScanlineClip });
+            cbo.SelectedItem = variant;
+            btnRun = new Button { Text = "Aplicar", Dock = DockStyle.Top, Height = 30 };
+            lblDesc = new Label { Dock = DockStyle.Fill, Text = GetDescription(variant), Padding = new Padding(10) };
+            this.Controls.Add(pic);
+            this.Controls.Add(lblDesc);
+            this.Controls.Add(btnRun);
+            this.Controls.Add(cbo);
+
+            pic.Image = new Bitmap(600, 600);
+            Redraw();
+
+            cbo.SelectedIndexChanged += (s, e) => { variant = (ClipPolyVariant)cbo.SelectedItem; lblDesc.Text = GetDescription(variant); Redraw(); };
+            btnRun.Click += (s, e) => { ApplyClip(); };
+        }
+
+        private enum ClipPolyVariant { SutherlandHodgman, WeilerAtherton, ScanlineClip }
+
+        private void Redraw()
+        {
+            using (var g = Graphics.FromImage(pic.Image))
+            {
+                g.Clear(Color.White);
+                g.DrawRectangle(Pens.Black, viewport);
+                if (subject.Count >= 2) g.DrawPolygon(Pens.Gray, subject.ToArray());
+            }
+            pic.Refresh();
+        }
+
+        private void ApplyClip()
+        {
+            try
+            {
+                if (variant == ClipPolyVariant.SutherlandHodgman)
+                {
+                    var res = CClipPolygons.SutherlandHodgman(viewport, subject);
+                    DrawResult(new List<List<Point>> { res });
+                }
+                else if (variant == ClipPolyVariant.WeilerAtherton)
+                {
+                    var res = CClipPolygons.WeilerAtherton(viewport, subject);
+                    DrawResult(res);
+                }
+                else if (variant == ClipPolyVariant.ScanlineClip)
+                {
+                    var res = CClipPolygons.ScanlineClip(viewport, subject);
+                    DrawResult(new List<List<Point>> { res });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void DrawResult(List<List<Point>> polys)
+        {
+            Redraw();
+            using (var g = Graphics.FromImage(pic.Image))
+            {
+                foreach (var poly in polys)
+                {
+                    if (poly.Count >= 3)
+                    {
+                        g.FillPolygon(Brushes.LightCoral, poly.ToArray());
+                        g.DrawPolygon(Pens.Red, poly.ToArray());
+                    }
+                }
+            }
+            pic.Refresh();
+        }
+
+        private string GetDescription(ClipPolyVariant v)
+        {
+            switch (v)
+            {
+                case ClipPolyVariant.SutherlandHodgman:
+                    return "Sutherland–Hodgman: recorte progresivo contra rectángulo (convexo).";
+                case ClipPolyVariant.WeilerAtherton:
+                    return "Weiler–Atherton: soporta casos complejos; aquí versión simplificada.";
+                case ClipPolyVariant.ScanlineClip:
+                    return "Scanline Clip: una aproximación por filas, delegada a SH por robustez.";
+            }
+            return string.Empty;
+        }
+    }
+}

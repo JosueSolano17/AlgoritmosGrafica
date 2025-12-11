@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+
+namespace WinAPPLineas
+{
+    internal static class CClipLines
+    {
+        // Cohen–Sutherland Line Clipping
+        // Descripción: usa códigos de región para recortar líneas respecto a un rectángulo.
+        public static bool CohenSutherland(Rectangle rect, ref Point p0, ref Point p1)
+        {
+            int code0 = OutCode(rect, p0);
+            int code1 = OutCode(rect, p1);
+            bool accept = false;
+
+            while (true)
+            {
+                if ((code0 | code1) == 0)
+                { accept = true; break; }
+                else if ((code0 & code1) != 0)
+                { break; }
+                else
+                {
+                    int outcodeOut = code0 != 0 ? code0 : code1;
+                    double x = 0, y = 0;
+
+                    if ((outcodeOut & TOP) != 0)
+                    { x = p0.X + (p1.X - p0.X) * (rect.Top - p0.Y) / (double)(p1.Y - p0.Y); y = rect.Top; }
+                    else if ((outcodeOut & BOTTOM) != 0)
+                    { x = p0.X + (p1.X - p0.X) * (rect.Bottom - p0.Y) / (double)(p1.Y - p0.Y); y = rect.Bottom; }
+                    else if ((outcodeOut & RIGHT) != 0)
+                    { y = p0.Y + (p1.Y - p0.Y) * (rect.Right - p0.X) / (double)(p1.X - p0.X); x = rect.Right; }
+                    else if ((outcodeOut & LEFT) != 0)
+                    { y = p0.Y + (p1.Y - p0.Y) * (rect.Left - p0.X) / (double)(p1.X - p0.X); x = rect.Left; }
+
+                    if (outcodeOut == code0)
+                    { p0 = new Point((int)Math.Round(x), (int)Math.Round(y)); code0 = OutCode(rect, p0); }
+                    else
+                    { p1 = new Point((int)Math.Round(x), (int)Math.Round(y)); code1 = OutCode(rect, p1); }
+                }
+            }
+            return accept;
+        }
+
+        // Liang–Barsky Line Clipping
+        // Descripción: paramétrico, más eficiente que Cohen–Sutherland.
+        public static bool LiangBarsky(Rectangle r, ref Point p0, ref Point p1)
+        {
+            double x0 = p0.X, y0 = p0.Y, x1 = p1.X, y1 = p1.Y;
+            double dx = x1 - x0, dy = y1 - y0;
+            double p, q;
+            double u1 = 0.0, u2 = 1.0;
+
+            double[] P = { -dx, dx, -dy, dy };
+            double[] Q = { x0 - r.Left, r.Right - x0, y0 - r.Top, r.Bottom - y0 };
+
+            for (int i = 0; i < 4; i++)
+            {
+                p = P[i]; q = Q[i];
+                if (p == 0)
+                {
+                    if (q < 0) return false; // paralelo fuera
+                }
+                else
+                {
+                    double t = q / p;
+                    if (p < 0) u1 = Math.Max(u1, t);
+                    else u2 = Math.Min(u2, t);
+                    if (u1 > u2) return false;
+                }
+            }
+
+            Point np0 = new Point((int)Math.Round(x0 + u1 * dx), (int)Math.Round(y0 + u1 * dy));
+            Point np1 = new Point((int)Math.Round(x0 + u2 * dx), (int)Math.Round(y0 + u2 * dy));
+            p0 = np0; p1 = np1;
+            return true;
+        }
+
+        // Cyrus–Beck Line Clipping (para convexos)
+        // Descripción: recorte paramétrico contra polígonos convexos.
+        public static bool CyrusBeck(IList<Point> polygon, ref Point p0, ref Point p1)
+        {
+            if (polygon == null || polygon.Count < 3) return false;
+            if (!IsConvex(polygon)) return false;
+
+            double tE = 0.0, tL = 1.0;
+            double dx = p1.X - p0.X, dy = p1.Y - p0.Y;
+
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                Point pA = polygon[i];
+                Point pB = polygon[(i + 1) % polygon.Count];
+                Point edge = new Point(pB.X - pA.X, pB.Y - pA.Y);
+                Point normal = new Point(-edge.Y, edge.X); // normal hacia afuera
+                Point w = new Point(p0.X - pA.X, p0.Y - pA.Y);
+
+                double DdotN = dx * normal.X + dy * normal.Y;
+                double WdotN = w.X * normal.X + w.Y * normal.Y;
+
+                if (DdotN == 0)
+                {
+                    if (WdotN < 0) return false; // paralelo fuera
+                }
+                else
+                {
+                    double t = -WdotN / DdotN;
+                    if (DdotN < 0)
+                    {
+                        if (t > tE) tE = t; // entrada
+                    }
+                    else
+                    {
+                        if (t < tL) tL = t; // salida
+                    }
+                    if (tE > tL) return false;
+                }
+            }
+
+            Point np0 = new Point((int)Math.Round(p0.X + tE * dx), (int)Math.Round(p0.Y + tE * dy));
+            Point np1 = new Point((int)Math.Round(p0.X + tL * dx), (int)Math.Round(p0.Y + tL * dy));
+            p0 = np0; p1 = np1;
+            return true;
+        }
+
+        private const int INSIDE = 0; // 0000
+        private const int LEFT = 1;   // 0001
+        private const int RIGHT = 2;  // 0010
+        private const int BOTTOM = 4; // 0100
+        private const int TOP = 8;    // 1000
+
+        private static int OutCode(Rectangle r, Point p)
+        {
+            int code = INSIDE;
+            if (p.X < r.Left) code |= LEFT;
+            else if (p.X > r.Right) code |= RIGHT;
+            if (p.Y < r.Top) code |= TOP;
+            else if (p.Y > r.Bottom) code |= BOTTOM;
+            return code;
+        }
+
+        private static bool IsConvex(IList<Point> poly)
+        {
+            int n = poly.Count;
+            if (n < 3) return false;
+            int sign = 0;
+            for (int i = 0; i < n; i++)
+            {
+                Point a = poly[i], b = poly[(i + 1) % n], c = poly[(i + 2) % n];
+                int cross = (b.X - a.X) * (c.Y - a.Y) - (b.Y - a.Y) * (c.X - a.X);
+                int s = Math.Sign(cross);
+                if (s != 0)
+                {
+                    if (sign == 0) sign = s;
+                    else if (sign != s) return false;
+                }
+            }
+            return true;
+        }
+    }
+}

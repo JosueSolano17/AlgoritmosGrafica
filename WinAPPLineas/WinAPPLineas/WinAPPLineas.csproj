@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4254325-FE75-42E9-8F72-61051E7D8CC3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WinAPPLineas</RootNamespace>
+    <AssemblyName>WinAPPLineas</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\CRecortarlineas.cs" />
+    <Compile Include="Clases\CRelleno.cs" />
+    <Compile Include="Formularios\CFill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CFill.Designer.cs">
+      <DependentUpon>CFill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\CohenSutherlandForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CohenSutherlandForm.Designer.cs">
+      <DependentUpon>CohenSutherlandForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\CPE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CPE.Designer.cs">
+      <DependentUpon>CPE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\CCirculo.cs" />
+    <Compile Include="Formularios\Circulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Circulo.Designer.cs">
+      <DependentUpon>Circulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\CLineas.cs" />
+    <Compile Include="Formularios\CBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CBA.Designer.cs">
+      <DependentUpon>CBA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\CyrusBeckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\CyrusBeckForm.Designer.cs">
+      <DependentUpon>CyrusBeckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\DDA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\DDA.Designer.cs">
+      <DependentUpon>DDA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FloodFillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FloodFillForm.Designer.cs">
+      <DependentUpon>FloodFillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\BoundaryFillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\BoundaryFillForm.Designer.cs">
+      <DependentUpon>BoundaryFillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\LiangBarskyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\LiangBarskyForm.Designer.cs">
+      <DependentUpon>LiangBarskyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MLA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MLA.Designer.cs">
+      <DependentUpon>MLA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Program.cs" />
+    <Compile Include="Formularios\ScalineFillForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ScalineFillForm.Designer.cs">
+      <DependentUpon>ScalineFillForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Formularios\XWLA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\XWLA.Designer.cs">
+      <DependentUpon>XWLA.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Formularios\BoundaryFillForm.resx">
+      <DependentUpon>BoundaryFillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CBA.resx">
+      <DependentUpon>CBA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CFill.resx">
+      <DependentUpon>CFill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Circulo.resx">
+      <DependentUpon>Circulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CohenSutherlandForm.resx">
+      <DependentUpon>CohenSutherlandForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CPE.resx">
+      <DependentUpon>CPE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\CyrusBeckForm.resx">
+      <DependentUpon>CyrusBeckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\DDA.resx">
+      <DependentUpon>DDA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FloodFillForm.resx">
+      <DependentUpon>FloodFillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\LiangBarskyForm.resx">
+      <DependentUpon>LiangBarskyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MLA.resx">
+      <DependentUpon>MLA.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ScalineFillForm.resx">
+      <DependentUpon>ScalineFillForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Formularios\XWLA.resx">
+      <DependentUpon>XWLA.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

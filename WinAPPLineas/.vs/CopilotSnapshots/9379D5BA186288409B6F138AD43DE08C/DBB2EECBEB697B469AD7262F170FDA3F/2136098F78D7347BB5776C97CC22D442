@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Opcional: se podría añadir dinámicamente un menú adicional aquí
+            // para las demos nuevas si no se desea modificar el diseñador.
+        }
+
+        private void ddaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DDA DDA = new DDA();
+            DDA.MdiParent = this;
+            DDA.Show();
+        }
+
+        private void midpointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MLA MLA = new MLA();
+            MLA.MdiParent = this;
+            MLA.Show();
+        }
+
+        private void xiaolinWuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XWLA xWLA = new XWLA();
+            xWLA.MdiParent = this;
+            xWLA.Show();
+        }
+
+        private void midPointCircleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Circulo circulo = new Circulo();
+            circulo.MdiParent = this;
+            circulo.Show();
+        }
+
+        private void circleBrenshmanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CBA cba = new CBA();
+            cba.MdiParent = this;
+            cba.Show();
+        }
+
+        private void círcleParamétricoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CPE cpe = new CPE();
+            cpe.MdiParent = this;
+            cpe.Show();
+        }
+
+        // Métodos para abrir las nuevas demos desde botones/menú existentes si se agregan en el diseñador
+        private void OpenRellenoDemo()
+        {
+            var frm = new DemoRellenoForm() { MdiParent = this };
+            frm.Show();
+        }
+        private void OpenClipLineDemo()
+        {
+            var frm = new DemoClipLineForm() { MdiParent = this };
+            frm.Show();
+        }
+        private void OpenClipPolyDemo()
+        {
+            var frm = new DemoClipPolyForm() { MdiParent = this };
+            frm.Show();
+        }
+    }
+}

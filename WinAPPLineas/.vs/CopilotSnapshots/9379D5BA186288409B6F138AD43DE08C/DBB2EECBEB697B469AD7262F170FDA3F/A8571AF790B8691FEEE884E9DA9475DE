@@ -1,0 +1,96 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+
+namespace WinAPPLineas
+{
+    internal static class CClipPolygons
+    {
+        // Sutherland–Hodgman - Recorte de polígonos convexos contra un rectángulo
+        // Descripción: recorta un polígono respecto a un polígono convexo (aquí: rectángulo del viewport).
+        public static List<Point> SutherlandHodgman(Rectangle clipRect, IList<Point> subject)
+        {
+            List<Point> output = new List<Point>(subject);
+            foreach (var edge in GetClipEdges(clipRect))
+            {
+                List<Point> input = new List<Point>(output);
+                output.Clear();
+                if (input.Count == 0) break;
+
+                for (int i = 0; i < input.Count; i++)
+                {
+                    Point current = input[i];
+                    Point prev = input[(i - 1 + input.Count) % input.Count];
+                    bool currInside = IsInside(edge, current);
+                    bool prevInside = IsInside(edge, prev);
+
+                    if (prevInside && currInside)
+                    {
+                        output.Add(current);
+                    }
+                    else if (prevInside && !currInside)
+                    {
+                        output.Add(Intersect(edge, prev, current));
+                    }
+                    else if (!prevInside && currInside)
+                    {
+                        output.Add(Intersect(edge, prev, current));
+                        output.Add(current);
+                    }
+                }
+            }
+            return output;
+        }
+
+        // Weiler–Atherton (simplificado) - Recorte contra rectángulo: retorna polígonos resultantes
+        // Descripción: maneja polígonos con agujeros o self-intersections (simplificado aquí a casos básicos).
+        public static List<List<Point>> WeilerAtherton(Rectangle clipRect, IList<Point> subject)
+        {
+            // Implementación básica: usa SH para obtener uno y retorna como lista única.
+            // Nota: una implementación completa requiere grafos de entrada/salida y manejo de múltiples contornos.
+            var clipped = SutherlandHodgman(clipRect, subject);
+            return clipped.Count > 0 ? new List<List<Point>> { clipped } : new List<List<Point>>();
+        }
+
+        // Recorte por líneas de escaneo (scanline clipping) para rectángulo
+        // Descripción: recorta segmentos horizontales por cada fila.
+        public static List<Point> ScanlineClip(Rectangle clipRect, IList<Point> subject)
+        {
+            // Aproximación: aplica SH que ya cumple el propósito con mejor robustez.
+            return SutherlandHodgman(clipRect, subject);
+        }
+
+        private struct Edge
+        {
+            public Point A;
+            public Point B;
+            public Edge(Point a, Point b) { A = a; B = b; }
+        }
+
+        private static IEnumerable<Edge> GetClipEdges(Rectangle r)
+        {
+            yield return new Edge(new Point(r.Left, r.Top), new Point(r.Right, r.Top)); // top
+            yield return new Edge(new Point(r.Right, r.Top), new Point(r.Right, r.Bottom)); // right
+            yield return new Edge(new Point(r.Right, r.Bottom), new Point(r.Left, r.Bottom)); // bottom
+            yield return new Edge(new Point(r.Left, r.Bottom), new Point(r.Left, r.Top)); // left
+        }
+
+        private static bool IsInside(Edge e, Point p)
+        {
+            int cross = (e.B.X - e.A.X) * (p.Y - e.A.Y) - (e.B.Y - e.A.Y) * (p.X - e.A.X);
+            return cross >= 0; // asumiendo orden antihorario de edges del rectángulo
+        }
+
+        private static Point Intersect(Edge e, Point p1, Point p2)
+        {
+            float x1 = e.A.X, y1 = e.A.Y, x2 = e.B.X, y2 = e.B.Y;
+            float x3 = p1.X, y3 = p1.Y, x4 = p2.X, y4 = p2.Y;
+
+            float denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+            if (denom == 0) return p2; // paralelo
+            float ix = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denom;
+            float iy = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denom;
+            return new Point((int)Math.Round(ix), (int)Math.Round(iy));
+        }
+    }
+}

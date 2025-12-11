@@ -1,0 +1,93 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    public class DemoRellenoForm : Form
+    {
+        private PictureBox pic;
+        private ComboBox cbo;
+        private Button btnSeed;
+        private Label lblDesc;
+        private List<Point> polygon;
+
+        public DemoRellenoForm()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            this.Text = "Demo Relleno";
+            this.Size = new Size(900, 600);
+            pic = new PictureBox { Dock = DockStyle.Right, Width = 600, BackColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
+            cbo = new ComboBox { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbo.Items.AddRange(new object[] { RellenoVariant.FloodFill, RellenoVariant.BoundaryFill, RellenoVariant.ScanlineFill });
+            cbo.SelectedIndex = 0;
+            btnSeed = new Button { Text = "Aplicar", Dock = DockStyle.Top, Height = 30 };
+            lblDesc = new Label { Dock = DockStyle.Fill, Padding = new Padding(10) };
+            this.Controls.Add(pic);
+            this.Controls.Add(lblDesc);
+            this.Controls.Add(btnSeed);
+            this.Controls.Add(cbo);
+
+            pic.Image = new Bitmap(600, 600);
+            using (var g = Graphics.FromImage(pic.Image))
+            {
+                g.Clear(Color.White);
+                polygon = new List<Point> { new Point(50, 50), new Point(300, 120), new Point(260, 400), new Point(80, 350) };
+                g.DrawPolygon(Pens.Black, polygon.ToArray());
+            }
+
+            btnSeed.Click += (s, e) => ApplyFill();
+            cbo.SelectedIndexChanged += (s, e) => { lblDesc.Text = GetDescription((RellenoVariant)cbo.SelectedItem); };
+            pic.MouseClick += (s, e) => { seed = e.Location; };
+        }
+
+        private Point seed = new Point(100, 100);
+        private enum RellenoVariant { FloodFill, BoundaryFill, ScanlineFill }
+
+        private void ApplyFill()
+        {
+            var bmp = (Bitmap)pic.Image;
+            try
+            {
+                var variant = (RellenoVariant)cbo.SelectedItem;
+                if (variant == RellenoVariant.FloodFill)
+                {
+                    CFill.FloodFillBfs(bmp, seed, Color.White, Color.LightBlue);
+                }
+                else if (variant == RellenoVariant.BoundaryFill)
+                {
+                    using (var g = Graphics.FromImage(bmp)) g.DrawPolygon(Pens.Red, polygon.ToArray());
+                    CFill.BoundaryFill(bmp, seed, Color.LightGreen, Color.Red);
+                }
+                else if (variant == RellenoVariant.ScanlineFill)
+                {
+                    CFill.ScanlineFill(bmp, polygon, Color.LightSalmon);
+                }
+                pic.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private string GetDescription(RellenoVariant v)
+        {
+            switch (v)
+            {
+                case RellenoVariant.FloodFill:
+                    return "Flood Fill (BFS): relleno por propagación usando cola.";
+                case RellenoVariant.BoundaryFill:
+                    return "Boundary Fill: rellena hasta frontera definida.";
+                case RellenoVariant.ScanlineFill:
+                    return "Scanline Fill: relleno de polígonos por líneas de escaneo.";
+            }
+            return string.Empty;
+        }
+    }
+}

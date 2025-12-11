@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace WinAPPLineas
+{
+    public class DemoClipLineForm : Form
+    {
+        private PictureBox pic;
+        private ComboBox cbo;
+        private Button btnRun;
+        private Label lblDesc;
+        private Rectangle viewport = new Rectangle(50, 50, 400, 300);
+        private Point p0 = new Point(10, 20), p1 = new Point(500, 380);
+
+        public DemoClipLineForm()
+        {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            this.Text = "Demo Recorte de Líneas";
+            this.Size = new Size(900, 600);
+            pic = new PictureBox { Dock = DockStyle.Right, Width = 600, BackColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
+            cbo = new ComboBox { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbo.Items.AddRange(new object[] { ClipLineVariant.CohenSutherland, ClipLineVariant.LiangBarsky, ClipLineVariant.CyrusBeck });
+            cbo.SelectedIndex = 0;
+            btnRun = new Button { Text = "Aplicar", Dock = DockStyle.Top, Height = 30 };
+            lblDesc = new Label { Dock = DockStyle.Fill, Padding = new Padding(10) };
+            this.Controls.Add(pic);
+            this.Controls.Add(lblDesc);
+            this.Controls.Add(btnRun);
+            this.Controls.Add(cbo);
+
+            pic.Image = new Bitmap(600, 600);
+            Redraw();
+
+            cbo.SelectedIndexChanged += (s, e) => { lblDesc.Text = GetDescription((ClipLineVariant)cbo.SelectedItem); Redraw(); };
+            btnRun.Click += (s, e) => { ApplyClip(); };
+        }
+
+        private enum ClipLineVariant { CohenSutherland, LiangBarsky, CyrusBeck }
+
+        private void Redraw()
+        {
+            using (var g = Graphics.FromImage(pic.Image))
+            {
+                g.Clear(Color.White);
+                g.DrawRectangle(Pens.Black, viewport);
+                g.DrawLine(Pens.Gray, p0, p1);
+            }
+            pic.Refresh();
+        }
+
+        private void ApplyClip()
+        {
+            var a = p0; var b = p1;
+            bool ok = false;
+            try
+            {
+                var variant = (ClipLineVariant)cbo.SelectedItem;
+                if (variant == ClipLineVariant.CohenSutherland)
+                    ok = CClipLines.CohenSutherland(viewport, ref a, ref b);
+                else if (variant == ClipLineVariant.LiangBarsky)
+                    ok = CClipLines.LiangBarsky(viewport, ref a, ref b);
+                else if (variant == ClipLineVariant.CyrusBeck)
+                {
+                    var rectPoly = new List<Point> {
+                        new Point(viewport.Left, viewport.Top),
+                        new Point(viewport.Right, viewport.Top),
+                        new Point(viewport.Right, viewport.Bottom),
+                        new Point(viewport.Left, viewport.Bottom)
+                    };
+                    ok = CClipLines.CyrusBeck(rectPoly, ref a, ref b);
+                }
+                Redraw();
+                using (var g = Graphics.FromImage(pic.Image))
+                {
+                    if (ok) g.DrawLine(Pens.Red, a, b);
+                }
+                pic.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private string GetDescription(ClipLineVariant v)
+        {
+            switch (v)
+            {
+                case ClipLineVariant.CohenSutherland:
+                    return "Cohen–Sutherland: recorte con códigos de región contra rectángulo.";
+                case ClipLineVariant.LiangBarsky:
+                    return "Liang–Barsky: recorte paramétrico eficiente.";
+                case ClipLineVariant.CyrusBeck:
+                    return "Cyrus–Beck: recorte paramétrico contra polígonos convexos.";
+            }
+            return string.Empty;
+        }
+    }
+}

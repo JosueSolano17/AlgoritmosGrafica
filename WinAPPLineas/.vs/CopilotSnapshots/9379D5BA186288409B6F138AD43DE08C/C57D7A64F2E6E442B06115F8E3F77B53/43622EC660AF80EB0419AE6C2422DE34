@@ -1,0 +1,211 @@
+﻿namespace WinAPPLineas
+{
+    partial class CPE
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        private void InitializeComponent()
+        {
+            this.grbInputs = new System.Windows.Forms.GroupBox();
+            this.txt_R = new System.Windows.Forms.TextBox();
+            this.lbl_R = new System.Windows.Forms.Label();
+            this.txt_Y = new System.Windows.Forms.TextBox();
+            this.lbl_Y = new System.Windows.Forms.Label();
+            this.txt_X = new System.Windows.Forms.TextBox();
+            this.lblX = new System.Windows.Forms.Label();
+            this.grbProcess = new System.Windows.Forms.GroupBox();
+            this.btnDibujar = new System.Windows.Forms.Button();
+            this.grbCanvas = new System.Windows.Forms.GroupBox();
+            this.picCanvas = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.grbInputs.SuspendLayout();
+            this.grbProcess.SuspendLayout();
+            this.grbCanvas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // grbInputs
+            // 
+            this.grbInputs.BackColor = System.Drawing.Color.Transparent;
+            this.grbInputs.Controls.Add(this.txt_R);
+            this.grbInputs.Controls.Add(this.lbl_R);
+            this.grbInputs.Controls.Add(this.txt_Y);
+            this.grbInputs.Controls.Add(this.lbl_Y);
+            this.grbInputs.Controls.Add(this.txt_X);
+            this.grbInputs.Controls.Add(this.lblX);
+            this.grbInputs.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.grbInputs.ForeColor = System.Drawing.Color.White;
+            this.grbInputs.Location = new System.Drawing.Point(18, 62);
+            this.grbInputs.Name = "grbInputs";
+            this.grbInputs.Size = new System.Drawing.Size(290, 150);
+            this.grbInputs.TabIndex = 0;
+            this.grbInputs.TabStop = false;
+            this.grbInputs.Text = "Entradas";
+            // 
+            // txt_R
+            // 
+            this.txt_R.Location = new System.Drawing.Point(110, 100);
+            this.txt_R.Name = "txt_R";
+            this.txt_R.Size = new System.Drawing.Size(160, 23);
+            this.txt_R.TabIndex = 5;
+            // 
+            // lbl_R
+            // 
+            this.lbl_R.AutoSize = true;
+            this.lbl_R.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lbl_R.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.lbl_R.Location = new System.Drawing.Point(10, 103);
+            this.lbl_R.Name = "lbl_R";
+            this.lbl_R.Size = new System.Drawing.Size(93, 13);
+            this.lbl_R.TabIndex = 4;
+            this.lbl_R.Text = "Radio del círculo";
+            // 
+            // txt_Y
+            // 
+            this.txt_Y.Location = new System.Drawing.Point(110, 63);
+            this.txt_Y.Name = "txt_Y";
+            this.txt_Y.Size = new System.Drawing.Size(160, 23);
+            this.txt_Y.TabIndex = 3;
+            // 
+            // lbl_Y
+            // 
+            this.lbl_Y.AutoSize = true;
+            this.lbl_Y.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lbl_Y.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.lbl_Y.Location = new System.Drawing.Point(10, 66);
+            this.lbl_Y.Name = "lbl_Y";
+            this.lbl_Y.Size = new System.Drawing.Size(79, 13);
+            this.lbl_Y.TabIndex = 2;
+            this.lbl_Y.Text = "Coordenada Y";
+            // 
+            // txt_X
+            // 
+            this.txt_X.Location = new System.Drawing.Point(110, 26);
+            this.txt_X.Name = "txt_X";
+            this.txt_X.Size = new System.Drawing.Size(160, 23);
+            this.txt_X.TabIndex = 1;
+            // 
+            // lblX
+            // 
+            this.lblX.AutoSize = true;
+            this.lblX.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lblX.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.lblX.Location = new System.Drawing.Point(10, 29);
+            this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(80, 13);
+            this.lblX.TabIndex = 0;
+            this.lblX.Text = "Coordenada X";
+            // 
+            // grbProcess
+            // 
+            this.grbProcess.Controls.Add(this.btnDibujar);
+            this.grbProcess.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.grbProcess.ForeColor = System.Drawing.Color.White;
+            this.grbProcess.Location = new System.Drawing.Point(18, 230);
+            this.grbProcess.Name = "grbProcess";
+            this.grbProcess.Size = new System.Drawing.Size(290, 70);
+            this.grbProcess.TabIndex = 1;
+            this.grbProcess.TabStop = false;
+            this.grbProcess.Text = "Acciones";
+            // 
+            // btnDibujar
+            // 
+            this.btnDibujar.BackColor = System.Drawing.Color.MediumVioletRed;
+            this.btnDibujar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDibujar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnDibujar.ForeColor = System.Drawing.Color.White;
+            this.btnDibujar.Location = new System.Drawing.Point(85, 22);
+            this.btnDibujar.Name = "btnDibujar";
+            this.btnDibujar.Size = new System.Drawing.Size(120, 30);
+            this.btnDibujar.TabIndex = 0;
+            this.btnDibujar.Text = "Dibujar (Paramétrico)";
+            this.btnDibujar.UseVisualStyleBackColor = false;
+            this.btnDibujar.Click += new System.EventHandler(this.btnDibujar_Click);
+            // 
+            // grbCanvas
+            // 
+            this.grbCanvas.Controls.Add(this.picCanvas);
+            this.grbCanvas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.grbCanvas.ForeColor = System.Drawing.Color.White;
+            this.grbCanvas.Location = new System.Drawing.Point(322, 12);
+            this.grbCanvas.Name = "grbCanvas";
+            this.grbCanvas.Size = new System.Drawing.Size(640, 520);
+            this.grbCanvas.TabIndex = 2;
+            this.grbCanvas.TabStop = false;
+            this.grbCanvas.Text = "Área de Dibujo";
+            // 
+            // picCanvas
+            // 
+            this.picCanvas.BackColor = System.Drawing.Color.White;
+            this.picCanvas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picCanvas.Location = new System.Drawing.Point(10, 22);
+            this.picCanvas.Name = "picCanvas";
+            this.picCanvas.Size = new System.Drawing.Size(620, 490);
+            this.picCanvas.TabIndex = 0;
+            this.picCanvas.TabStop = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(14, 12);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(298, 25);
+            this.lblTitle.TabIndex = 3;
+            this.lblTitle.Text = "Círculo (Algoritmo Paramétrico)";
+            // 
+            // CPE
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(50)))), ((int)(((byte)(56)))));
+            this.ClientSize = new System.Drawing.Size(980, 545);
+            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.grbCanvas);
+            this.Controls.Add(this.grbProcess);
+            this.Controls.Add(this.grbInputs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(996, 584);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(996, 584);
+            this.Name = "CPE";
+            this.Text = "Círculo Paramétrico";
+            this.grbInputs.ResumeLayout(false);
+            this.grbInputs.PerformLayout();
+            this.grbProcess.ResumeLayout(false);
+            this.grbCanvas.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox grbInputs;
+        private System.Windows.Forms.TextBox txt_R;
+        private System.Windows.Forms.Label lbl_R;
+        private System.Windows.Forms.TextBox txt_Y;
+        private System.Windows.Forms.Label lbl_Y;
+        private System.Windows.Forms.TextBox txt_X;
+        private System.Windows.Forms.Label lblX;
+        private System.Windows.Forms.GroupBox grbProcess;
+        private System.Windows.Forms.Button btnDibujar;
+        private System.Windows.Forms.GroupBox grbCanvas;
+        private System.Windows.Forms.PictureBox picCanvas;
+        private System.Windows.Forms.Label lblTitle;
+    }
+}

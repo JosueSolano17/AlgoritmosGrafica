@@ -1,0 +1,490 @@
+eas\Formularios\FloodFillForm.cs
+using System;
+using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using WinAPPLineas.Clases;
+
+namespace WinAPPLineas.Formularios
+{
+    public partial class FloodFillForm : Form
+    {
+        private PictureBox picCanvas;
+        private Panel pnlControls;
+        private GroupBox grpColors;
+        private GroupBox grpAnimation;
+        private Button btnFillColor;
+        private Button btnBoundaryColor;
+        private Button btnDemo;
+        private Button btnClear;
+        private Button btnStop;
+        private CheckBox chkAnimate;
+        private TrackBar trkSpeed;
+        private Label lblSpeed;
+        private Label lblSpeedValue;
+        private Label lblInstructions;
+        private ColorDialog colorDialog;
+
+        private Bitmap canvas;
+        private Graphics gfx;
+        private Color fillColor = Color.CornflowerBlue;
+        private Color boundaryColor = Color.Black;
+        private Color drawColor = Color.Black;
+        private bool isAnimating = false;
+        private CancellationTokenSource cancellationTokenSource;
+
+        public FloodFillForm()
+        {
+            InitializeComponent();
+            InitializeCustomComponents();
+            SetupCanvas();
+        }
+
+        private void InitializeCustomComponents()
+        {
+            // Configuración del formulario
+            this.Text = "Flood Fill - Algoritmo de Relleno";
+            this.Size = new Size(1000, 700);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.FromArgb(240, 240, 240);
+
+            // Panel de controles lateral
+            pnlControls = new Panel
+            {
+                Dock = DockStyle.Right,
+                Width = 250,
+                BackColor = Color.FromArgb(250, 250, 250),
+                Padding = new Padding(10)
+            };
+
+            // GroupBox de colores
+            grpColors = new GroupBox
+            {
+                Text = "Colores",
+                Location = new Point(10, 10),
+                Size = new Size(230, 120),
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+            };
+
+            btnFillColor = new Button
+            {
+                Text = "Color de Relleno",
+                Location = new Point(15, 25),
+                Size = new Size(200, 35),
+                BackColor = fillColor,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9F),
+                Cursor = Cursors.Hand
+            };
+            btnFillColor.FlatAppearance.BorderSize = 1;
+            btnFillColor.Click += BtnFillColor_Click;
+
+            btnBoundaryColor = new Button
+            {
+                Text = "Color de Límite",
+                Location = new Point(15, 70),
+                Size = new Size(200, 35),
+                BackColor = boundaryColor,
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9F),
+                Cursor = Cursors.Hand
+            };
+            btnBoundaryColor.FlatAppearance.BorderSize = 1;
+            btnBoundaryColor.Click += BtnBoundaryColor_Click;
+
+            grpColors.Controls.AddRange(new Control[] { btnFillColor, btnBoundaryColor });
+
+            // GroupBox de animación
+            grpAnimation = new GroupBox
+            {
+                Text = "Animación",
+                Location = new Point(10, 140),
+                Size = new Size(230, 140),
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold)
+            };
+
+            chkAnimate = new CheckBox
+            {
+                Text = "Activar animación",
+                Location = new Point(15, 25),
+                Size = new Size(200, 25),
+                Font = new Font("Segoe UI", 9F),
+                Checked = true
+            };
+            chkAnimate.CheckedChanged += ChkAnimate_CheckedChanged;
+
+            lblSpeed = new Label
+            {
+                Text = "Velocidad:",
+                Location = new Point(15, 60),
+                Size = new Size(80, 20),
+                Font = new Font("Segoe UI", 9F)
+            };
+
+            lblSpeedValue = new Label
+            {
+                Text = "Media",
+                Location = new Point(150, 60),
+                Size = new Size(65, 20),
+                Font = new Font("Segoe UI", 9F, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleRight
+            };
+
+            trkSpeed = new TrackBar
+            {
+                Location = new Point(15, 85),
+                Size = new Size(200, 45),
+                Minimum = 0,
+                Maximum = 100,
+                Value = 50,
+                TickFrequency = 10,
+                Enabled = true
+            };
+            trkSpeed.ValueChanged += TrkSpeed_ValueChanged;
+
+            grpAnimation.Controls.AddRange(new Control[] { chkAnimate, lblSpeed, lblSpeedValue, trkSpeed });
+
+            // Botones de acción
+            btnDemo = new Button
+            {
+                Text = "Demostración",
+                Location = new Point(10, 290),
+                Size = new Size(230, 40),
+                BackColor = Color.FromArgb(0, 120, 212),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnDemo.FlatAppearance.BorderSize = 0;
+            btnDemo.Click += BtnDemo_Click;
+
+            btnClear = new Button
+            {
+                Text = "Limpiar Lienzo",
+                Location = new Point(10, 340),
+                Size = new Size(230, 40),
+                BackColor = Color.FromArgb(100, 100, 100),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnClear.FlatAppearance.BorderSize = 0;
+            btnClear.Click += BtnClear_Click;
+
+            btnStop = new Button
+            {
+                Text = "Detener Animación",
+                Location = new Point(10, 390),
+                Size = new Size(230, 40),
+                BackColor = Color.FromArgb(232, 17, 35),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                Enabled = false
+            };
+            btnStop.FlatAppearance.BorderSize = 0;
+            btnStop.Click += BtnStop_Click;
+
+            // Label de instrucciones
+            lblInstructions = new Label
+            {
+                Text = "Haz clic en el lienzo para rellenar.\n\n" +
+                       "• Click izquierdo: Aplicar Flood Fill\n" +
+                       "• Click derecho: Dibujar obstáculos",
+                Location = new Point(10, 450),
+                Size = new Size(230, 120),
+                Font = new Font("Segoe UI", 8.5F),
+                ForeColor = Color.FromArgb(80, 80, 80),
+                BackColor = Color.FromArgb(255, 255, 220),
+                Padding = new Padding(5),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            pnlControls.Controls.AddRange(new Control[] { 
+                grpColors, grpAnimation, btnDemo, btnClear, btnStop, lblInstructions 
+            });
+
+            // PictureBox para el lienzo
+            picCanvas = new PictureBox
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White,
+                BorderStyle = BorderStyle.FixedSingle,
+                SizeMode = PictureBoxSizeMode.CenterImage,
+                Cursor = Cursors.Cross
+            };
+            picCanvas.MouseClick += PicCanvas_MouseClick;
+            picCanvas.MouseDown += PicCanvas_MouseDown;
+            picCanvas.MouseMove += PicCanvas_MouseMove;
+            picCanvas.MouseUp += PicCanvas_MouseUp;
+
+            colorDialog = new ColorDialog
+            {
+                FullOpen = true
+            };
+
+            this.Controls.Add(picCanvas);
+            this.Controls.Add(pnlControls);
+        }
+
+        private void SetupCanvas()
+        {
+            canvas = new Bitmap(700, 600);
+            picCanvas.Image = canvas;
+            gfx = Graphics.FromImage(canvas);
+            gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            ClearCanvas();
+        }
+
+        private void ClearCanvas()
+        {
+            gfx.Clear(Color.White);
+            
+            // Dibujar algunas formas de demostración
+            using (Pen pen = new Pen(boundaryColor, 2))
+            {
+                // Rectángulo
+                gfx.DrawRectangle(pen, 50, 50, 250, 200);
+                
+                // Círculo
+                gfx.DrawEllipse(pen, 350, 50, 200, 200);
+                
+                // Forma irregular
+                Point[] points = new Point[]
+                {
+                    new Point(150, 320),
+                    new Point(280, 300),
+                    new Point(350, 400),
+                    new Point(280, 480),
+                    new Point(150, 450),
+                    new Point(100, 380)
+                };
+                gfx.DrawPolygon(pen, points);
+            }
+            
+            picCanvas.Refresh();
+        }
+
+        private bool isDrawing = false;
+        private Point lastPoint;
+
+        private void PicCanvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                isDrawing = true;
+                lastPoint = e.Location;
+            }
+        }
+
+        private void PicCanvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDrawing && e.Button == MouseButtons.Right)
+            {
+                using (Pen pen = new Pen(drawColor, 3))
+                {
+                    gfx.DrawLine(pen, lastPoint, e.Location);
+                }
+                lastPoint = e.Location;
+                picCanvas.Refresh();
+            }
+        }
+
+        private void PicCanvas_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDrawing = false;
+        }
+
+        private async void PicCanvas_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && !isAnimating)
+            {
+                Point clickPoint = e.Location;
+                
+                if (clickPoint.X < 0 || clickPoint.X >= canvas.Width || 
+                    clickPoint.Y < 0 || clickPoint.Y >= canvas.Height)
+                    return;
+
+                if (chkAnimate.Checked)
+                {
+                    await StartAnimatedFloodFill(clickPoint.X, clickPoint.Y);
+                }
+                else
+                {
+                    CRelleno.FloodFill(canvas, clickPoint.X, clickPoint.Y, fillColor);
+                    picCanvas.Refresh();
+                }
+            }
+        }
+
+        private async Task StartAnimatedFloodFill(int x, int y)
+        {
+            isAnimating = true;
+            btnStop.Enabled = true;
+            btnDemo.Enabled = false;
+            btnClear.Enabled = false;
+            cancellationTokenSource = new CancellationTokenSource();
+
+            try
+            {
+                int delay = GetDelayFromTrackbar();
+                
+                await CRelleno.FloodFillAnimated(
+                    canvas, 
+                    x, 
+                    y, 
+                    fillColor, 
+                    delay,
+                    OnNeighborCallback,
+                    OnPixelFilledCallback,
+                    cancellationTokenSource.Token
+                );
+            }
+            catch (OperationCanceledException)
+            {
+                MessageBox.Show("Animación detenida por el usuario.", "Detenido", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error durante el flood fill: {ex.Message}", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                isAnimating = false;
+                btnStop.Enabled = false;
+                btnDemo.Enabled = true;
+                btnClear.Enabled = true;
+                cancellationTokenSource?.Dispose();
+                cancellationTokenSource = null;
+            }
+        }
+
+        private async Task OnNeighborCallback(int fromX, int fromY, int toX, int toY, 
+            CRelleno.NeighborStatus status, CancellationToken token)
+        {
+            // Visualización opcional de vecinos explorados
+            await Task.Delay(1, token);
+        }
+
+        private async Task OnPixelFilledCallback(int x, int y, CancellationToken token)
+        {
+            picCanvas.Invalidate();
+            Application.DoEvents();
+            await Task.CompletedTask;
+        }
+
+        private int GetDelayFromTrackbar()
+        {
+            // Mapear el valor del trackbar a delay en ms
+            // Valor alto = velocidad alta = delay bajo
+            int value = trkSpeed.Value;
+            if (value <= 10) return 50;
+            if (value <= 30) return 20;
+            if (value <= 50) return 5;
+            if (value <= 70) return 2;
+            if (value <= 90) return 1;
+            return 0;
+        }
+
+        private void BtnFillColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = fillColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                fillColor = colorDialog.Color;
+                btnFillColor.BackColor = fillColor;
+                btnFillColor.ForeColor = GetContrastColor(fillColor);
+            }
+        }
+
+        private void BtnBoundaryColor_Click(object sender, EventArgs e)
+        {
+            colorDialog.Color = boundaryColor;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                boundaryColor = colorDialog.Color;
+                drawColor = boundaryColor;
+                btnBoundaryColor.BackColor = boundaryColor;
+                btnBoundaryColor.ForeColor = GetContrastColor(boundaryColor);
+            }
+        }
+
+        private Color GetContrastColor(Color color)
+        {
+            int luminance = (int)(0.299 * color.R + 0.587 * color.G + 0.114 * color.B);
+            return luminance > 128 ? Color.Black : Color.White;
+        }
+
+        private void ChkAnimate_CheckedChanged(object sender, EventArgs e)
+        {
+            trkSpeed.Enabled = chkAnimate.Checked;
+            lblSpeed.Enabled = chkAnimate.Checked;
+            lblSpeedValue.Enabled = chkAnimate.Checked;
+        }
+
+        private void TrkSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            int value = trkSpeed.Value;
+            if (value <= 25)
+                lblSpeedValue.Text = "Lenta";
+            else if (value <= 50)
+                lblSpeedValue.Text = "Media";
+            else if (value <= 75)
+                lblSpeedValue.Text = "Rápida";
+            else
+                lblSpeedValue.Text = "Muy Rápida";
+        }
+
+        private async void BtnDemo_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+            
+            if (chkAnimate.Checked)
+            {
+                await StartAnimatedFloodFill(150, 125);
+                if (!cancellationTokenSource?.IsCancellationRequested ?? false)
+                {
+                    await Task.Delay(500);
+                    await StartAnimatedFloodFill(450, 150);
+                }
+                if (!cancellationTokenSource?.IsCancellationRequested ?? false)
+                {
+                    await Task.Delay(500);
+                    await StartAnimatedFloodFill(200, 380);
+                }
+            }
+            else
+            {
+                CRelleno.FloodFill(canvas, 150, 125, fillColor);
+                CRelleno.FloodFill(canvas, 450, 150, Color.LightGreen);
+                CRelleno.FloodFill(canvas, 200, 380, Color.LightSalmon);
+                picCanvas.Refresh();
+            }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            ClearCanvas();
+        }
+
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            cancellationTokenSource?.Cancel();
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            cancellationTokenSource?.Cancel();
+            gfx?.Dispose();
+            canvas?.Dispose();
+            base.OnFormClosing(e);
+        }
+    }
+}

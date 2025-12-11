@@ -1,0 +1,41 @@
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.exe.config
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.exe
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.pdb
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.DDA.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Form1.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Properties.Resources.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.GenerateResource.cache
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.exe
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.pdb
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.exe.config
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.MLA.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.XWLA.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Circulo.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.CBA.resources
+C:\Users\Usuario\Documents\grafica\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.CPE.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.exe.config
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.CBA.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Circulo.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.CPE.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.DDA.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Form1.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.MLA.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Properties.Resources.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.XWLA.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.GenerateResource.cache
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.exe
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.pdb
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.exe.config
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.exe
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\bin\Debug\WinAPPLineas.pdb
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.CFill.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.FloodFillForm.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.BoundaryFillForm.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.ScanlineFillForm.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.CohenSutherlandForm.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.CyrusBeckForm.resources
+C:\Users\DELL\Documents\GRAFICA\2 PARCIAL\WinAPPLineas\WinAPPLineas\obj\Debug\WinAPPLineas.Formularios.LiangBarskyForm.resources
